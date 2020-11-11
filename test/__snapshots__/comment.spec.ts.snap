@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment Spec Should automatically add comment owner with current login user 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "deleted": false,
+  "id": 1,
+  "message": "lorem ipsum dolor sit amet",
+  "updatedAt": Any<String>,
+  "user": Object {
+    "createdAt": Any<String>,
+    "deleted": false,
+    "email": "john.doe@gmail.com",
+    "id": 1,
+    "name": "John Doe",
+    "role": "User",
+    "updatedAt": Any<String>,
+  },
+}
+`;

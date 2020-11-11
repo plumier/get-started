@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Spec Should not showing password on the response to anyone 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "deleted": false,
+  "id": 1,
+  "name": "John Doe",
+  "role": "User",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`User Spec Should only showing Email to the owner or admin on response 1`] = `
+Object {
+  "createdAt": Any<String>,
+  "deleted": false,
+  "email": "john.doe@gmail.com",
+  "id": 1,
+  "name": "John Doe",
+  "role": "User",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`User Spec Should only showing Email to the owner or admin on response 2`] = `
+Object {
+  "createdAt": Any<String>,
+  "deleted": false,
+  "id": 1,
+  "name": "John Doe",
+  "role": "User",
+  "updatedAt": Any<String>,
+}
+`;
+
+exports[`User Spec Should only showing Email to the owner or admin on response 3`] = `
+Object {
+  "createdAt": Any<String>,
+  "deleted": false,
+  "email": "john.doe@gmail.com",
+  "id": 1,
+  "name": "John Doe",
+  "role": "User",
+  "updatedAt": Any<String>,
+}
+`;
