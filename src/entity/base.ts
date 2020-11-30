@@ -22,15 +22,5 @@ export class BaseEntity {
 
 export interface LoginUser {
     userId: number,
-    role: AppRole
-}
-
-// --------------------------------------------------------------------- //
-// ------------------------------- ROLES ------------------------------- //
-// --------------------------------------------------------------------- //
-
-export enum AppRole {
-    Admin = "Admin",
-    Owner = "Owner",
-    User = "User",
+    role: "User" | "Admin"
 }

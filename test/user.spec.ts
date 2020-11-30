@@ -3,13 +3,13 @@ import "@plumier/typeorm"
 import supertest from "supertest"
 import { getConnection, getManager } from "typeorm"
 
-import { User } from "../src/api/user"
+import { User } from "../src/entity/user"
 import createApp from "../src/app"
 import dotenv from "dotenv"
 import { join } from "path"
 import bcrypt from "bcryptjs"
 import { adminToken, createToken, userToken, ignoreProps } from "./shared"
-import { AppRole } from "../src/api/_shared"
+import { AppRole } from "../src/entity/base"
 
 dotenv.config({ path: join(__dirname, ".env-test") })
 

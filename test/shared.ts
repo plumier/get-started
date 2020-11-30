@@ -1,5 +1,5 @@
 import { sign } from "jsonwebtoken";
-import { AppRole, LoginUser } from "../src/api/_shared";
+import { AppRole, LoginUser } from "../src/entity/base";
 import dotenv from "dotenv"
 import { join } from "path"
 import supertest from "supertest";

@@ -1,19 +1,19 @@
 import bcrypt from "bcryptjs"
-import { authorize, entityPolicy, preSave, Public, route, val } from "plumier"
+import { authorize, preSave, Public, route, val } from "plumier"
 import { Column, Entity } from "typeorm"
 
-import { AppRole, BaseEntity } from "./_shared"
+import { BaseEntity } from "./base"
 
 @route.controller(c => {
     c.post().authorize(Public)
-    c.actions("Put", "Patch", "Delete").authorize(AppRole.Owner, AppRole.Admin)
+    c.actions("Put", "Patch", "Delete").authorize("Owner", "Admin")
 })
 @Entity()
 export class User extends BaseEntity {
     @val.required()
     @val.unique()
     @val.email()
-    @authorize.read(AppRole.Owner, AppRole.Admin)
+    @authorize.read("Owner", "Admin")
     @Column()
     email: string
 
@@ -26,9 +26,9 @@ export class User extends BaseEntity {
     @Column()
     name: string
 
-    @authorize.write(AppRole.Admin)
-    @Column({ default: AppRole.User })
-    role: AppRole
+    @authorize.write("Admin")
+    @Column({ default: "User" })
+    role: "User" | "Admin"
 
     @preSave()
     async hashPassword() {
@@ -36,6 +36,3 @@ export class User extends BaseEntity {
             this.password = await bcrypt.hash(this.password, await bcrypt.genSalt())
     }
 }
-
-export const UserOwnerPolicy = entityPolicy(User)
-    .define(AppRole.Owner, (ctx, id) => ctx.user?.userId === id)

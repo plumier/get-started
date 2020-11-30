@@ -8,9 +8,9 @@ function createApp(config?: Partial<Configuration>) {
         .set({ ...config, rootDir: __dirname })
         .set(new WebApiFacility())
         .set(new TypeORMFacility())
-        .set(new ControllerFacility({ controller: "./auth/*.*(ts|js)", rootPath: "api/v1" }))
-        .set(new ControllerFacility({ controller: "./api/*.*(ts|js)", rootPath: "api/v1" }))
-        .set(new JwtAuthFacility({ authPolicies: "./api/*.*(ts|js)" }))
+        .set(new ControllerFacility({ controller: "./auth/*.*(ts|js)" }))
+        .set(new ControllerFacility({ controller: "./entity/*.*(ts|js)", rootPath: "api/v1" }))
+        .set(new JwtAuthFacility({ authPolicies: "./policy/*.*(ts|js)" }))
         .set(new SwaggerFacility())
         .initialize()
 }

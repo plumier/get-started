@@ -3,8 +3,8 @@ import { sign } from "jsonwebtoken"
 import { authorize, HttpStatus, HttpStatusError, route } from "plumier"
 import { getManager } from "typeorm"
 
-import { User } from "../api/user"
-import { LoginUser } from "../api/_shared"
+import { User } from "../entity/user"
+import { LoginUser } from "../entity/base"
 
 
 export class AuthController {
@@ -16,6 +16,8 @@ export class AuthController {
         const user = await this.userRepo.findOne({ email })
         if (!user || !await compare(password, user.password))
             throw new HttpStatusError(HttpStatus.UnprocessableEntity, "Invalid username or password")
+        // sign JWT claims for Bearer authorization header 
+        // this claim then accessible from request context ctx.user 
         return { token: sign(<LoginUser>{ userId: user.id, role: user.role }, process.env.PLUM_JWT_SECRET!) }
     }
 }
