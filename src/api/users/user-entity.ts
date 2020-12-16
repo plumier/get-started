@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs"
-import { authorize, preSave, Public, route, val } from "plumier"
+import { authorize, entityPolicy, preSave, Public, route, val } from "plumier"
 import { Column, Entity } from "typeorm"
 
-import { BaseEntity } from "./base"
+import { BaseEntity } from "../../shared"
 
 @route.controller(c => {
     c.post().authorize(Public)
@@ -36,3 +36,9 @@ export class User extends BaseEntity {
             this.password = await bcrypt.hash(this.password, await bcrypt.genSalt())
     }
 }
+
+// define "Owner" policy authorization for User entity
+entityPolicy(User)
+    // owner of User is when current login user id is the same as current accessed User id 
+    // ctx.user is the JWT claim, the object signed during login process (see auth.ts)
+    .register("Owner", (ctx, id) => ctx.user?.userId === id)

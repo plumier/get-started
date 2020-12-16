@@ -3,13 +3,12 @@ import "@plumier/typeorm"
 import supertest from "supertest"
 import { getConnection, getManager } from "typeorm"
 
-import { User } from "../src/entity/user"
+import { User } from "../src/api/users/user-entity"
 import createApp from "../src/app"
 import dotenv from "dotenv"
 import { join } from "path"
 import bcrypt from "bcryptjs"
 import { adminToken, createToken, userToken, ignoreProps } from "./shared"
-import { AppRole } from "../src/entity/base"
 
 dotenv.config({ path: join(__dirname, ".env-test") })
 
@@ -85,7 +84,7 @@ describe("User Spec", () => {
                 name: "John Doe",
             })
             .expect(200)
-        const token = createToken(user.id, AppRole.User)
+        const token = createToken(user.id, "User")
         const { body: byItself } = await supertest(app.callback())
             .get(`/api/v1/users/${user.id}`)
             .set("Authorization", `Bearer ${token}`)
@@ -150,7 +149,7 @@ describe("User Spec", () => {
                 name: "Jane Doe",
             })
             .expect(200)
-        const userTwoToken = createToken(userTwo.id, AppRole.User)
+        const userTwoToken = createToken(userTwo.id, "User")
         await supertest(app.callback())
             .patch(`/api/v1/users/${userOne.id}`)
             .send({
@@ -169,7 +168,7 @@ describe("User Spec", () => {
                 name: "John Doe",
             })
             .expect(200)
-        const userOneToken = createToken(userOne.id, AppRole.User)
+        const userOneToken = createToken(userOne.id, "User")
         await supertest(app.callback())
             .delete(`/api/v1/users/${userOne.id}`)
             .set("Authorization", `Bearer ${userOneToken}`)
@@ -218,7 +217,7 @@ describe("User Spec", () => {
                 name: "Jane Doe",
             })
             .expect(200)
-        const userTwoToken = createToken(userTwo.id, AppRole.User)
+        const userTwoToken = createToken(userTwo.id, "User")
         await supertest(app.callback())
             .delete(`/api/v1/users/${userOne.id}`)
             .set("Authorization", `Bearer ${userTwoToken}`)

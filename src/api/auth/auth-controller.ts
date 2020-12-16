@@ -3,8 +3,8 @@ import { sign } from "jsonwebtoken"
 import { authorize, HttpStatus, HttpStatusError, route } from "plumier"
 import { getManager } from "typeorm"
 
-import { User } from "../entity/user"
-import { LoginUser } from "../entity/base"
+import { User } from "../users/user-entity"
+import { LoginUser } from "../../shared"
 
 
 export class AuthController {

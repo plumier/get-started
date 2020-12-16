@@ -6,16 +6,16 @@
     "test": "jest"
   },
   "dependencies": {
-    "@plumier/jwt": "1.0.0-canary.khelfoev.0",
-    "@plumier/swagger": "1.0.0-canary.khelfoev.0",
-    "@plumier/typeorm": "1.0.0-canary.khelfoev.0",
+    "@plumier/jwt": "1.0.0-canary.kiqz68ge.0",
+    "@plumier/swagger": "1.0.0-canary.kiqz68ge.0",
+    "@plumier/typeorm": "1.0.0-canary.kiqz68ge.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/dotenv": "^8.2.0",
     "@types/jsonwebtoken": "^8.5.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
-    "plumier": "1.0.0-canary.khelfoev.0",
+    "plumier": "1.0.0-canary.kiqz68ge.0",
     "sqlite3": "^5.0.0",
     "typeorm": "^0.2.29"
   },
